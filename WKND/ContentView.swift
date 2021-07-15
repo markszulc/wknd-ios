@@ -13,16 +13,17 @@ struct ContentView: View {
           Color("WKND_yellow")
           .edgesIgnoringSafeArea(.all)
         
-            VStack(alignment: .leading, spacing: 35, content: {
+            VStack(alignment: .leading, spacing: 0, content: {
                 
                 Image("WKND_logo")
                     .resizable()
                     .frame(width: 100, height: 40)
                     .padding(.top, 30)
-                    .padding(.bottom, 0)
+                    .padding(.bottom, 10)
                 
                 
-                offerlist()
+                adventureList()
+               // offerlist()
                 
                 Spacer()
 

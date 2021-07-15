@@ -15,49 +15,51 @@ struct offerlist: View {
         
         VStack (alignment: .leading, spacing: 1) {
 
-                 Text("Our Adventures")
+                 Text("Our Offers")
                     .foregroundColor(Color.black)
                     .font(.custom("Asar-Regular", size: 36))
                            .bold()
 
                  ScrollView(.horizontal, showsIndicators: false) {
                      HStack (alignment: .top, spacing: 20) {
-                         ForEach(fetcher.offerlistheadless, id: \.adventureTitle) { offer in
+                         ForEach(fetcher.offerlistheadless, id: \.headline) { offer in
                              
                                      VStack (alignment: .leading, spacing: 5) {
         
-                                        let url = URL(string: "https://aem-publisher.au.ngrok.io" + offer.adventurePrimaryImage._path)!
+         //                               let url = URL(string: "https://publish-p24704-e76433.adobeaemcloud.com" + offer.adventurePrimaryImage._path)!
                                         
-                                        AsyncImage(
-                                            url: url,
-                                           placeholder: { Text("Loading ...") },
-                                           image: { Image(uiImage: $0)
-                                                .resizable()
-                                           }
-                                        ).frame(height: 160)
+//                                        AsyncImage(
+//                                            url: url,
+//                                           placeholder: { Text("Loading ...") },
+//                                           image: { Image(uiImage: $0)
+//                                                .resizable()
+//                                           }
+//                                        ).frame(height: 160)
 
                                         
-                                         Text(offer.adventureTitle)
+                                         Text(offer.headline)
                                             .font(.custom("SourceSansPro-Bold", size: 24))
                                           .foregroundColor(Color.black)
                                           .bold()
-                                          .padding(10)
+                                            .padding(0)
+                                            .padding(.leading, 10)
 
-                                        Text("from " + offer.adventurePrice)
-                                          .font(.custom("SourceSansPro-Regular", size: 18))
-                                            .foregroundColor(Color.black)
-                                            .padding(10)
+//                                        Text("from " + offer.adventurePrice)
+//                                          .font(.custom("SourceSansPro-Regular", size: 18))
+//                                            .foregroundColor(Color.black)
+//                                            .padding(0)
+//                                            .padding(.leading, 10)
 
                                         Spacer()
 
                                      }
-                                     .frame(width: 250, height: 300)
+                                     .frame(width: 250, height: 230)
                                      .background(Color.white)
                                      .border(Color("WKND_yellow"))
                                     
                                  }
                          }
-                         .frame(height: 300)
+                         .frame(height: 250)
                      }
              }.foregroundColor(.white)
     }
@@ -80,7 +82,7 @@ struct offerlist_Previews: PreviewProvider {
 
 
 public class AEM_offerFetcher: ObservableObject {
-    @Published var offerlistheadless = [Offer.Data.AdventureList.Items]()
+    @Published var offerlistheadless = [Offer.Data.OfferList.Items]()
     
     init(){
         load()
@@ -90,7 +92,8 @@ public class AEM_offerFetcher: ObservableObject {
             
         let semaphore = DispatchSemaphore (value: 0)
         
-        let parameters = "{\"query\":\"{ adventureList {\\n items {\\n _path\\n adventureTitle\\n adventurePrice\\n adventureTripLength\\n adventurePrimaryImage {\\n ... on ImageRef {\\n _path\\n _publishUrl\\n mimeType\\n width\\n height\\n }\\n }\\n }\\n }\\n }\\n\",\"variables\":{}}"
+        let parameters = "{\"query\":\"{\\n  offerList {\\n    items {\\n      headline\\n      detail {\\n        plaintext\\n      }\\n      heroImage {\\n        ... on ImageRef {\\n          _path\\n        }\\n      }\\n    }\\n  }\\n}\\n\",\"variables\":{}}"
+        
         
         let postData = parameters.data(using: .utf8)
 
@@ -111,11 +114,11 @@ public class AEM_offerFetcher: ObservableObject {
           print(String(data: data, encoding: .utf8)!)
             do {
                 let offerJSON = try JSONDecoder().decode(Offer.self, from: data)
-                let offerCount = offerJSON.data.adventureList.items.count
+                let offerCount = offerJSON.data.offerList.items.count
                             print(offerCount)
                            
                             DispatchQueue.main.async {
-                                self.offerlistheadless = offerJSON.data.adventureList.items
+                                self.offerlistheadless = offerJSON.data.offerList.items
                                 dump(self.offerlistheadless)
                             }
                             
@@ -137,24 +140,13 @@ public class AEM_offerFetcher: ObservableObject {
 
 struct Offer: Codable {
     struct Data : Codable {
-        struct AdventureList : Codable {
+        struct OfferList : Codable {
                 struct Items : Codable {
-                    let _path : String
-                    let adventureTitle : String
-                    let adventurePrice : String
-                    let adventureTripLength : String
-                    struct PrimaryImage : Codable {
-                        let _path: String
-                        let _publishUrl: String
-                        let mimeType: String
-                        let width: Int
-                        let height: Int
-                    }
-                    let adventurePrimaryImage:PrimaryImage
+                    let headline : String
                 }
             let items:[Items]
         }
-        let adventureList:AdventureList
+        let offerList:OfferList
 
     }
      let data:Data

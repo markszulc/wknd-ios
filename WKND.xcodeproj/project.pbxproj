@@ -25,6 +25,7 @@
 		941172952623D8DE001D89C0 /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 941172862623D85A001D89C0 /* SourceSansPro-Light.ttf */; };
 		941172992623D8E1001D89C0 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 941172842623D85A001D89C0 /* SourceSansPro-Regular.ttf */; };
 		9411729D2623D8E4001D89C0 /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 941172882623D85A001D89C0 /* SourceSansPro-SemiBold.ttf */; };
+		94938B8E269FC01A00A057F4 /* adventureList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94938B8D269FC01A00A057F4 /* adventureList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,9 @@
 		941172872623D85A001D89C0 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		941172882623D85A001D89C0 /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		941172A12623DDCB001D89C0 /* WKND.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WKND.entitlements; sourceTree = "<group>"; };
+		94938B8D269FC01A00A057F4 /* adventureList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = adventureList.swift; sourceTree = "<group>"; };
+		94B643FC2632747100709890 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		94B644002632759700709890 /* iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 		5A7D08D12623BF0600184BD8 = {
 			isa = PBXGroup;
 			children = (
+				94B644002632759700709890 /* iphone.png */,
+				94B643FC2632747100709890 /* README.md */,
 				5A7D08DC2623BF0700184BD8 /* WKND */,
 				5A7D08EE2623BF0A00184BD8 /* WKNDAppTests */,
 				5A7D08F92623BF0A00184BD8 /* WKNDAppUITests */,
@@ -161,6 +167,7 @@
 		5A7D090D2623C03500184BD8 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				94938B8D269FC01A00A057F4 /* adventureList.swift */,
 				5A7D090E2623C03500184BD8 /* ImageCache.swift */,
 				5A7D090F2623C03500184BD8 /* ImageLoader.swift */,
 				5A7D09112623C03500184BD8 /* EnvironmentValues+ImageCache.swift */,
@@ -320,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94938B8E269FC01A00A057F4 /* adventureList.swift in Sources */,
 				5A7D09152623C03500184BD8 /* ImageCache.swift in Sources */,
 				5A7D091B2623C03500184BD8 /* offerlist.swift in Sources */,
 				5A7D08E02623BF0700184BD8 /* ContentView.swift in Sources */,
